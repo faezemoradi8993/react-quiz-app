@@ -3,7 +3,7 @@ import { QuizContext } from '../Helper/Contexts/QuizContext';
 const Menu = () => {
     const { setGameState } = useContext(QuizContext);
     return (
-        <div>
+        <div className="card">
             <button onClick={() => setGameState('quiz')}>start</button>
         </div>
     )
