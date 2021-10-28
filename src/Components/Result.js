@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
-import { QuizContext } from '../Helper/Contexts/QuizContext'
+import React from 'react'
+import { useQuizContext } from '../Helper/Contexts/QuizContext'
 import { QuestionBank } from '../Helper/Contexts/QuestionBank'
 
 const Result = () => {
-    const { score, setGameState, setScore, CurrentGroup, setCurrentGroup, CurrentQuestion, setCurrentQuestion, GroupScore, setGroupScore } = useContext(QuizContext)
+    const { score, setGameState, setScore, CurrentGroup, setCurrentGroup, setCurrentQuestion, GroupScore, setGroupScore } = useQuizContext()
     const restart = () => {
         setScore(0)
         setGameState("menu")

@@ -1,7 +1,7 @@
-import React, { setState, useState, useContext } from 'react'
-import { QuizContext } from '../Helper/Contexts/QuizContext';
+import React from 'react'
+import { useQuizContext } from '../Helper/Contexts/QuizContext';
 const Menu = () => {
-    const { setGameState } = useContext(QuizContext);
+    const { setGameState } = useQuizContext();
     return (
         <div className="card">
             <button onClick={() => setGameState('quiz')}>start</button>

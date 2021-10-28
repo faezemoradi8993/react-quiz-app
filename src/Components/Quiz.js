@@ -1,9 +1,9 @@
 import React from 'react'
-import { useContext, useState, useEffect } from 'react/cjs/react.development';
-import { QuizContext } from '../Helper/Contexts/QuizContext';
+import { useState, useEffect } from 'react';
+import { useQuizContext } from '../Helper/Contexts/QuizContext';
 import { QuestionBank } from '../Helper/Contexts/QuestionBank';
 const Quiz = () => {
-    const { score, setScore, setGameState, CurrentGroup, CurrentQuestion, setCurrentQuestion } = useContext(QuizContext);
+    const { score, setScore, setGameState, CurrentGroup, CurrentQuestion, setCurrentQuestion } = useQuizContext();
     const [optionChose, setOptionChose] = useState("");
     const [backColorA, setBackColorA] = useState('white')
     const [backColorB, setBackColorB] = useState('white')
@@ -51,10 +51,21 @@ const Quiz = () => {
         <div className="card">
             <h2> {QuestionBank[CurrentGroup][CurrentQuestion].Question}</h2>
             <div className="options">
-                <button disabled={disabled} style={{ background: backColorA }} onClick={checkA}>{QuestionBank[CurrentGroup][CurrentQuestion].A}</button>
-                <button disabled={disabled} style={{ background: backColorB }} onClick={checkB}>{QuestionBank[CurrentGroup][CurrentQuestion].B}</button>
+                <button disabled={disabled} style={{ background: backColorA }} onClick={checkA}>
+                    {QuestionBank[CurrentGroup][CurrentQuestion].A}
+                </button>
+                <button disabled={disabled} style={{ background: backColorB }} onClick={checkB}>
+                    {QuestionBank[CurrentGroup][CurrentQuestion].B}
+                </button>
             </div>
-            {CurrentQuestion === (QuestionBank[CurrentGroup].length - 1) ? <div className="keys"><button onClick={finishQuiz}>finish</button></div> : <div className="keys"> <button style={{ background: "yellow" }} onClick={hint}>hint</button> <button onClick={nextQuestion}>next</button></div>
+            {CurrentQuestion === (QuestionBank[CurrentGroup].length - 1) ?
+                <div className="keys">
+                    <button onClick={finishQuiz}>finish</button>
+                </div> :
+                <div className="keys">
+                    <button style={{ background: "yellow" }} onClick={hint}>hint</button>
+                    <button onClick={nextQuestion}>next</button>
+                </div>
             }
             <h5>your score : {score}</h5>
             {(toggle) && <h5 className="hint" style={{ background: "yellow" }}> answer is  {QuestionBank[CurrentGroup][CurrentQuestion].answer}</h5>}
